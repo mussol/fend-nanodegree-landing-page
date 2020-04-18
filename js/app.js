@@ -17,6 +17,8 @@
  * Define Global Variables
  * 
 */
+const navbarContainer = document.querySelector("#navbar__list");
+const sectionList = document.querySelectorAll("section");
 
 
 /**
@@ -35,6 +37,7 @@
 
 // build the nav
 
+document.addEventListener('DOMContentLoaded', buildNavMenu); //trying to tackle the feature "Adding more sections will automatically populate nav."
 
 // Add class 'active' to section when near top of viewport
 
@@ -49,6 +52,19 @@
 */
 
 // Build menu 
+
+function buildNavMenu () {
+    const fragment = document.createDocumentFragment();
+
+    for (let i = 0; i < sectionList.length; i++) {
+        const newElement = document.createElement('li');
+        newElement.innerText = sectionList[i].dataset.nav;
+
+        fragment.appendChild(newElement);
+    }
+
+    navbarContainer.appendChild(fragment);
+};
 
 // Scroll to section on link click
 
