@@ -17,8 +17,8 @@
  * Define Global Variables
  * 
 */
-const navbarContainer = document.querySelector("#navbar__list");
-const sectionList = document.querySelectorAll("section");
+const navbarList = document.querySelector("#navbar__list");
+const sections = document.querySelectorAll("section");
 
 
 /**
@@ -54,16 +54,17 @@ document.addEventListener('DOMContentLoaded', buildNavMenu); //trying to tackle 
 // Build menu 
 
 function buildNavMenu () {
-    const fragment = document.createDocumentFragment();
+    let fragment = document.createDocumentFragment();
 
-    for (let i = 0; i < sectionList.length; i++) {
-        const newElement = document.createElement('li');
-        newElement.innerText = sectionList[i].dataset.nav;
-
+    for (let i = 0; i < sections.length; i++) {
+        let newElement = document.createElement('li');
+        let newLink = document.createElement("a");
+        newLink.classList.add("menu__link");
+        newLink.innerText = sections[i].dataset.nav;
+        newElement.appendChild(newLink);
         fragment.appendChild(newElement);
     }
-
-    navbarContainer.appendChild(fragment);
+    navbarList.appendChild(fragment);
 };
 
 // Scroll to section on link click
