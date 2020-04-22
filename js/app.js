@@ -53,6 +53,7 @@ function buildNavMenu () {
         let newLink = document.createElement("a");
         newLink.classList.add("menu__link");
         newLink.innerText = sections[i].dataset.nav;
+        //new data attribute to use when clicking to scroll to appropriate section
         newLink.dataset.dest = sections[i].id;
         newElement.appendChild(newLink);
         fragment.appendChild(newElement);
