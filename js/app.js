@@ -56,6 +56,7 @@ document.addEventListener("scroll", activateSection);
 
 // Scroll to anchor ID using scrollTO event
 
+navbarList.addEventListener("click", scrollUntil);
 
 /**
  * End Main Functions
@@ -73,6 +74,7 @@ function buildNavMenu () {
         let newLink = document.createElement("a");
         newLink.classList.add("menu__link");
         newLink.innerText = sections[i].dataset.nav;
+        newLink.dataset.dest = sections[i].id;
         newElement.appendChild(newLink);
         fragment.appendChild(newElement);
     }
@@ -81,6 +83,12 @@ function buildNavMenu () {
 
 // Scroll to section on link click
 
+function scrollUntil (event) {
+    if (event.target.nodeName.toLowerCase() === "a" ) {
+        let destination = document.getElementById(event.target.dataset.dest);
+        destination.scrollIntoView({behavior: "smooth"});
+    }
+};
 // Set sections as active
 
 function activateSection () {
