@@ -38,8 +38,6 @@ function isInViewport (el) {
 // help for function above: https://knowledge.udacity.com/questions/124306 and https://tinyurl.com/yd3b3oy6
 
 
-
-
 /**
  * End Helper Functions
  * Begin Main Functions
@@ -47,25 +45,6 @@ function isInViewport (el) {
 */
 
 // build the nav
-
-document.addEventListener('DOMContentLoaded', buildNavMenu); //trying to tackle the feature "Adding more sections will automatically populate nav."
-
-// Add class 'active' to section when near top of viewport
-
-document.addEventListener("scroll", activateSection);
-
-// Scroll to anchor ID using scrollTO event
-
-navbarList.addEventListener("click", scrollUntil);
-
-/**
- * End Main Functions
- * Begin Events
- * 
-*/
-
-// Build menu 
-
 function buildNavMenu () {
     let fragment = document.createDocumentFragment();
 
@@ -81,16 +60,7 @@ function buildNavMenu () {
     navbarList.appendChild(fragment);
 };
 
-// Scroll to section on link click
-
-function scrollUntil (event) {
-    if (event.target.nodeName.toLowerCase() === "a" ) {
-        let destination = document.getElementById(event.target.dataset.dest);
-        destination.scrollIntoView({behavior: "smooth"});
-    }
-};
-// Set sections as active
-
+// Add class 'active' to section when near top of viewport
 function activateSection () {
     for (let i = 0; i < sections.length; i++) {
         if (isInViewport(sections[i])) {
@@ -100,4 +70,27 @@ function activateSection () {
         }
     }
 };
+
+// Scroll to anchor ID using scrollTO event
+function scrollUntil (event) {
+    if (event.target.nodeName.toLowerCase() === "a" ) {
+        let destination = document.getElementById(event.target.dataset.dest);
+        destination.scrollIntoView({behavior: "smooth"});
+    }
+};
+
+/**
+ * End Main Functions
+ * Begin Events
+ * 
+*/
+
+// Build menu 
+document.addEventListener('DOMContentLoaded', buildNavMenu);
+
+// Scroll to section on link click
+navbarList.addEventListener("click", scrollUntil);
+
+// Set sections as active
+document.addEventListener("scroll", activateSection);
 
