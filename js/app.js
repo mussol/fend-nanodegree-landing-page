@@ -64,10 +64,13 @@ function buildNavMenu () {
 // Add class 'active' to section when near top of viewport
 function activateSection () {
     for (let i = 0; i < sections.length; i++) {
+        let matchingNavLink = document.querySelector(`[data-dest=${sections[i].id}`);
         if (isInViewport(sections[i])) {
             sections[i].classList.add("your-active-class");
+            matchingNavLink.classList.add('menu__link-hovered');
         } else {
             sections[i].classList.remove("your-active-class");
+            matchingNavLink.classList.remove('menu__link-hovered');
         }
     }
 };
